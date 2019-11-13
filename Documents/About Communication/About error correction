@@ -1,0 +1,16 @@
+SOURCE: https://www.researchgate.net/topic/Visible-Light-Communications
+AUTHOR: Abdelhalim Zekry
+With visible light communication as wireless communication channel you can
+use all the forward error correction techniques. You can use block channel 
+coding like RS code which is useful for correcting the burst errors.
+You can use convolutional channel coding which has the capability to correct 
+random bit errors. You can combine the two codes to achieve high correction 
+capability. The strongest error correction coding is the turbo coding which 
+has the ultimate gain.
+The burst error can be randomized by using interleaves. So, it is normally 
+to use interleavers with convolutional codes.
+In fact you can use error detection and correction techniques to improve 
+the transmission over channels with relatively low S/N ratio.
+
+There is an article related to TURBO CODING mentioned above in the DOCUMENTS 
+folder. It can be useful.
