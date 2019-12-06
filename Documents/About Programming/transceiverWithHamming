@@ -1,3 +1,6 @@
+
+//Array büyüklüğü data boyutundan fazla olmalı
+
 array parityAdd(RandomData[50])
 {
   for(i=0;i<50;i++)
