@@ -1,0 +1,67 @@
+byte fourBit2Ham74(byte);
+void setup() {
+  // initialize serial communication at 9600 bits per second:
+  Serial.begin(9600);
+}
+// the loop routine runs over and over again forever:
+void loop() {
+  // read the input on analog pin 0:
+  int sensorValue = analogRead(A0);
+  // print out the value you read:
+  Serial.println("\n\nHam74!");
+  Serial.println(fourBit2Ham74((map(sensorValue, 0, 1023, 0, 15))), BIN);
+  delay(3321);        // delay in between reads for stability
+}
+byte fourBit2Ham74(byte input)
+{
+  Serial.print("Input:\t\t");
+  Serial.print(input, BIN);
+  Serial.print("\t");
+  Serial.println(input, DEC);
+  boolean dat1=(0 < (input & B00000001)),
+          dat2=(0 < (input & B00000010)),
+          dat3=(0 < (input & B00000100)),
+          dat4=(0 < (input & B00001000));
+  Serial.print("DataBits:\t[");
+  Serial.print(dat1, BIN); Serial.print("-");
+  Serial.print(dat2, BIN); Serial.print("-");
+  Serial.print(dat3, BIN); Serial.print("-");
+  Serial.print(dat4, BIN); Serial.println("]");
+  boolean par1=(dat1 ^  dat2 ^          dat4),
+          par2=(dat1 ^          dat3 ^  dat4),
+          par3=(        dat2 ^  dat3 ^  dat4);
+  Serial.print("ParityBits:\t[");
+  Serial.print(par1, BIN); Serial.print("-");
+  Serial.print(par2, BIN); Serial.print("-");
+  Serial.print(par3, BIN); Serial.println("]");
+  boolean extrapar = (par1 ^ par2 ^ dat1 ^ par3 ^ dat2 ^ dat3 ^ dat4);
+  Serial.print("ExtraPar:\t[");
+  Serial.print(extrapar, BIN); Serial.println("]");
+  boolean outputBits[8]={par1, par2, dat1, par3, dat2, dat3, dat4, extrapar};
+  byte output=B00000000;
+  int i;
+  for(i=0; i<8; i++)
+  {
+    if(outputBits[i])
+    {
+      bitSet(output, i);
+    }
+    else
+    {
+      bitClear(output, i);
+    }
+  }
+  Serial.print("OutputBits:\t[");
+  Serial.print(outputBits[0], BIN);
+  for(i=1; i<8; i++)
+  {
+    Serial.print("-");
+    Serial.print(outputBits[i], BIN);
+  }
+  Serial.println("]");
+  Serial.print("OutputByte:\t");
+  Serial.print(output, BIN);
+  Serial.print("\t");
+  Serial.println(output, DEC);
+  return output;
+}
