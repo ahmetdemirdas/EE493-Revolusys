@@ -1,0 +1,59 @@
+array parityAdd(RandomData[50])
+{
+  for(i=0;i<50;i++)
+  {
+    if(i&1==1)
+      P1=0^RandomData[i];
+    }
+     
+  for(i=0;i<50;i++)
+  {
+    if(i&2==1)
+      P2=0^RandomData[i];
+    }
+  for(i=0;i<50;i++)
+  {
+    if(i&4==1)
+      P4=0^RandomData[i];
+    }
+   for(i=0;i<50;i++)
+  {
+    if(i&8==1)
+      P8=0^RandomData[i];
+    }
+    for(i=0;i<50;i++)
+  {
+    if(i&16==1)
+      P16=0^RandomData[i];
+    }
+    for(i=0;i<50;i++)
+  {
+    if(i&32==1)
+      P32=0^RandomData[i];
+    }
+     
+     pos = 1;
+   for(i=51; i>=pos;i--)
+      RandomData[i]=RandomData[i-1];
+     RandomData[pos-1]=P1;
+     pos = 2;
+   for(i=52; i>=pos;i--)
+      RandomData[i]=RandomData[i-1];
+     RandomData[pos-1]=P2;
+     pos = 4;
+   for(i=53; i>=pos;i--)
+      RandomData[i]=RandomData[i-1];
+     RandomData[pos-1]=P4;
+     pos = 8;
+   for(i=54; i>=pos;i--)
+      RandomData[i]=RandomData[i-1];
+     RandomData[pos-1]=P8;
+     pos = 16;
+   for(i=55; i>=pos;i--)
+      RandomData[i]=RandomData[i-1];
+     RandomData[pos-1]=P16;
+     pos = 32;
+   for(i=56; i>=pos;i--)
+      RandomData[i]=RandomData[i-1];
+     RandomData[pos-1]=P32;
+  }
