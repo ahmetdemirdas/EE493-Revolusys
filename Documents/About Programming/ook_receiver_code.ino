@@ -1,7 +1,8 @@
+
 int databit;
 int start=0;
 int i=0;
-int received_data[100];
+int received_data[56];
 int k = 0;
 void setup() {
   // put your setup code here, to run once:
@@ -13,18 +14,6 @@ void loop() {
   // put your main code here, to run repeatedly:
 databit= digitalRead(10);
 delayMicroseconds(50);
-if(start == 1 && i<100)
-{
-  received_data[i] = databit;
-  i++;
-  
-  
-  }
-  if(i == 100 && k<100)
-  {
-    for( k = 0; k<100; k++)
-    Serial.println(received_data[k]);
-    }
 
 while(start==0)
 {if(databit==1)
@@ -55,14 +44,18 @@ while(start==0)
   }
 }
 
-
+if(start == 1 && i<56)
 {
-  
-  
+  received_data[i] = databit;
+  i++;
   
   }
-
-
-  
+if(i == 56 && k<56)
+{
+    for( k = 0; k<56; k++)
+    Serial.println(received_data[k]);
+  }  
 
 }
+
+  
