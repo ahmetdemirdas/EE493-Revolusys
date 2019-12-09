@@ -32,36 +32,36 @@ if(ArrayOperation)
 {
         for(i=1;i<52;i++)
         {
-          if(i&1==1)
+          if(i&1)
             P1=0^DataArr[i];
           }
-           
-        for(i=1;i<53;i++)
+
+        for(i=1;i<52;i++)
         {
-          if(i&2==1)
+          if(i&2)
             P2=0^DataArr[i];
           }
-        for(i=1;i<54;i++)
+        for(i=1;i<52;i++)
         {
-          if(i&4==1)
+          if(i&4)
             P4=0^DataArr[i];
           }
-         for(i=1;i<55;i++)
+         for(i=1;i<52;i++)
         {
-          if(i&8==1)
+          if(i&8)
             P8=0^DataArr[i];
           }
-          for(i=1;i<56;i++)
+          for(i=1;i<52;i++)
         {
-          if(i&16==1)
+          if(i&16)
             P16=0^DataArr[i];
           }
-          for(i=1;i<57;i++)
+          for(i=1;i<52;i++)
         {
-          if(i&32==1)
+          if(i&32)
             P32=0^DataArr[i];
           }
-           
+
            pos = 2;
          for(i=52; i>=pos;i--)
             DataArr[i]=DataArr[i-1];
@@ -86,8 +86,9 @@ if(ArrayOperation)
          for(i=57; i>=pos;i--)
             DataArr[i]=DataArr[i-1];
            DataArr[pos-1]=P32;
-        ArrayOperation=0;
-        
+            ArrayOperation=0;
+            
+
   }
   
   if(!ArrayOperation&&PreAmbleSignal)
