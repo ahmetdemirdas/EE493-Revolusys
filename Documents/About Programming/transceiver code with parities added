@@ -1,4 +1,4 @@
-int DataArr[57]={0,1,0,1,0,1,1,1,0,0,0,1,0,1,0,1,1,1,0,0,0,1,0,1,0,1,1,1,0,0,0,1,0,1,0,1,1,1,0,0,0,1,0,1,0,1,1,1,0,0,0};
+int DataArr[58]={0,1,0,1,0,1,1,1,0,0,0,1,0,1,0,1,1,1,0,0,0,1,0,1,0,1,1,1,0,0,0,1,0,1,0,1,1,1,0,0,0,1,0,1,0,1,1,1,0,0,0};
 int i,P1,P2,P4,P8,P16,P32,pos;
 int PreAmble[5]={1,1,0,1,1};
 int PreAmbleSignal = 1;
@@ -87,7 +87,12 @@ if(ArrayOperation)
             DataArr[i]=DataArr[i-1];
            DataArr[pos-1]=P32;
             ArrayOperation=0;
-            
+         for(int a=1;a<57;a++)
+         {
+          Serial.print(DataArr[a]);
+          Serial.print(" ");
+          }
+          
 
   }
   
@@ -117,7 +122,7 @@ if(ArrayOperation)
   {
     i=1;
     ArrayOperation=0;
-    while(i<57)
+    while(i<58)
     {
       if(DataArr[i]==1)
       {
@@ -134,4 +139,17 @@ if(ArrayOperation)
       }       
     }
 }
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
