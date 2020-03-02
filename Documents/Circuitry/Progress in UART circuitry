@@ -1,0 +1,4 @@
+10 cmde ölçümler aldık. 9600 baudda  0 errorla 100 byte gönderdik. 
+Comparator 0 V yerine -220 mV ile kıyaslama yaptık.
+LM358e 6 V ile -4.3(dummy supplyın -3 ü) supply verdik.
+fotodiyot(LM741) receiver-Highpass filter- LM358 comparator-RX pin.
