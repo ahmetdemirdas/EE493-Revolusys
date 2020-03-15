@@ -1,0 +1,3 @@
+I run these codes on Windows Power Shell with Python 3.7. If it does not in another
+ environment, either version of Python is different(change syntax) or libraries
+are not complete. 
