@@ -27,7 +27,7 @@ def communication_error_rate(environment, real_distance, sd_type):
     sd_fit = numpy.polyfit(real_distance_values, measured_sd, 3)
     error_function = numpy.poly1d(mean_fit/100) # normalizing percentage
     sd_function = numpy.poly1d(sd_fit)
-    real_distance = random.normalvariate(error_function(real_distance), sd_function(real_distance))
+    error_rate = random.normalvariate(error_function(real_distance), sd_function(real_distance))
     # # The following 12 lines are written to observe the behaviour of the fitted functions in usage range. Optimum
     # # fitting degree is found as 3.
     # mean = numpy.zeros(451)
@@ -43,4 +43,4 @@ def communication_error_rate(environment, real_distance, sd_type):
     # plt.figure()
     # plt.plot(x_axis, sd, "-")
     # plt.savefig("sd_comm.png")
-    return real_distance
+    return error_rate
