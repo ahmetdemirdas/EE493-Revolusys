@@ -27,14 +27,15 @@ def erroneus_packet_selector(number_of_packets, error_rate):
     return erroneus_packet_indexes
 
 
-def communication_error_creator_concentrated(packet_byte_data, wrong_packet_indexes, packet_index):
+def communication_error_creator_concentrated(packet_byte_data, error_rate):
     byte_data_mutable = bytearray(packet_byte_data)
     mess_ratio=0.8 # Described how much the wrong byte is randomized.
-    if packet_index in wrong_packet_indexes:
-        number_of_bytes = len(packet_byte_data)
+    number_of_bytes=len(packet_byte_data)
+    prob_1=random.random()
+    if prob_1<error_rate:
         for i in range(number_of_bytes):
-            prob=random.random()
-            if prob<mess_ratio:
+            prob = random.random()
+            if prob < mess_ratio:
                 byte_data_mutable[i] = random.randint(0, 255)
     packet_byte_data = bytes(byte_data_mutable)
     return packet_byte_data
