@@ -44,10 +44,11 @@ def checksum(data, sum=0):
 
 
 def send_one_kB(serialobj, packet, count): # this function sends 1 kB chunk of a given packet
-    check = checksum(packet)
-    check = str(check)
+
     print('Check result of the taken 1 kB data: ', check)
     if(len(packet) < 1024): # if the lenght of the packet is smaller than 1 kB send all of it and tell the car to go with BYE command
+        check = checksum(packet)
+        check = str(check)
         serialobj.write('BYE'.encode('utf-8'))
         serialobj.write(packet)
         serialobj.write('CHECK'.encode('utf-8'))
@@ -58,17 +59,23 @@ def send_one_kB(serialobj, packet, count): # this function sends 1 kB chunk of a
         return 0
     else:   #if its length is bigger than 1 kB send it as chunks of 1 kB
         if (count+1)*1024 < len(packet): #as long as we dont reach at the end of the packet execute this
+            packet_to_send = packet[count * 1024:(count + 1) * 1024]
+            check = checksum(packet_to_send)
+            check = str(check)
             serialobj.write('CHU'.encode('utf-8')) # CHU implies there will be at least one more chunk after this one
-            serialobj.write(packet[count*1024:(count+1)*1024])
+            serialobj.write(packet_to_send)
             serialobj.write('CHECK'.encode('utf-8'))
             serialobj.write(check.encode('utf-8'))
             serialobj.write('ENDOFLINE'.encode('utf-8'))
-            print('The count is equal to',count,' and CHU')
-            print('Packet length is',len(packet[count*1024:(count+1)*1024]))
+            print('The count is equal to', count, ' and CHU')
+            print('Packet length is', len(packet[count*1024:(count+1)*1024]))
             return 1
         else: # when the loop condition becomes false, send the last chunk
+            packet_to_send = packet[count*1024:]
+            check = checksum(packet_to_send)
+            check = str(check)
             serialobj.write('BYE'.encode('utf-8')) #BYE means this is the last chunk and that the car can go after receiving it.
-            serialobj.write(packet[count*1024:])
+            serialobj.write(packet_to_send)
             serialobj.write('CHECK'.encode('utf-8'))
             serialobj.write(check.encode('utf-8'))
             serialobj.write('ENDOFLINE'.encode('utf-8'))
