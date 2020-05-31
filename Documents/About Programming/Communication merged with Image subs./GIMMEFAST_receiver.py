@@ -1,7 +1,4 @@
-# This receiver only recognizes the ending indicator of the byte array
-# The starting sequence should also be added
-# It takes and displays the entire picture
-# The picture should be divided
+# This is complete receiver code. It simulates the project as if there is a vehicle 
 
 from PIL import Image
 from PIL import ImageFile
